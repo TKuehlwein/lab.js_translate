@@ -8,8 +8,6 @@ Please read "instruction.txt" for explanation on how to use the scripts.
 ## Installation and preperation
 1. Clone the repository
 2.	Install Python
-3.	Install dependencies
-    ``` pip install -r requirements.txt ```
 4.	Set up your LLM API key
    
 	•	Follow the steps explained by DeepL or OpenAI
