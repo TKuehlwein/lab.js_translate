@@ -4,7 +4,8 @@ How to use
 2. Adjust variables in "translation_GPT_API.py" or "translation_DeepL_API.py" depending on preference
 3. Add all .json files to be translated into one working directory
 4. Ensure that you have a copy of all .json files, as they will be overwritten
-5. Run "translation_GPT_API.py" or "translation_DeepL_API.py"
+5. Adjust all sections in the script with # TODO
+6. Run "translation_GPT_API.py" or "translation_DeepL_API.py"
 
 
 Knows issues: 
