@@ -6,16 +6,53 @@ import deepl
 
 from html_parser import HtmlTextRewriter, HtmlTextExtractor
 from translation_queue import Queue
+# -------------------------------------------------------------------
+# USER SETTINGS
+# -------------------------------------------------------------------
 
-AUTH_KEY = "DeepL_AUTH_KEY" # TODO add your DeppL API KEY into a variable called "DeepL_AUTH_KEY"
-                            # so that it is never displayed
+# The DeepL API key is read from an environment variable.
+# Do not paste your API key directly into this script.
+#
+# Before running the script, create an environment variable called
+# DEEPL_AUTH_KEY that contains your DeepL API key.
+#
+# On Mac/Linux, you can do this in the terminal with:
+# export DEEPL_AUTH_KEY="your_api_key_here"
+#
+# On Windows PowerShell, use:
+# $env:DEEPL_AUTH_KEY="your_api_key_here"
+AUTH_KEY = os.environ["DEEPL_AUTH_KEY"]
+
+
+# Folder containing the lab.js .json files that should be translated.
+# Example Mac path:
+# FOLDER_PATH = "/Users/yourname/Desktop/labjs_files"
+#
+# Example Windows path:
+# FOLDER_PATH = r"C:\Users\yourname\Desktop\labjs_files"
 FOLDER_PATH = "" # TODO change this to your path where .json files are located
 
 deepl_client = deepl.DeepLClient(AUTH_KEY)
 
+# Target language for the translation.
+# Examples:
+# "EN-US" = English, American
+# "EN-GB" = English, British
+# "FR" = French
+# "DE" = German
+#
+# Note: DeepL uses specific language codes.
+# For example, use "EN-US" or "EN-GB" instead of only "EN".
 TARGET_LANGUAGE = "EN" # TODO set the target language to be translated to
+
+# Delimiter used internally to separate text snippets before translation.
+# You usually do not need to change this.
+# Only change it if the symbol "ω" appears in your experiment text.
 DELIMITER = "ω" # TODO if you use ω within your experiment, change to different delimiter
 
+# These are the lab.js fields that may contain visible participant-facing text.
+# The script will only translate text inside these fields.
+# CSS, HTML tags, and JavaScript code should not be changed.
 SECTIONS = [
     "title",
     "text",
@@ -35,6 +72,9 @@ SECTIONS = [
     "label"
 ]
 
+# -------------------------------------------------------------------
+# FUNCTIONS
+# -------------------------------------------------------------------
 
 def traverse_json(data, html_fn: Callable[[str], str]):
     for comp_id, comp in data.get("components", {}).items():
@@ -93,12 +133,16 @@ def translate_file(path: str) -> None:
         )
 
 
+# -------------------------------------------------------------------
+# RUN SCRIPT
+# -------------------------------------------------------------------
+
 if __name__ == "__main__":
     for filename in os.listdir(FOLDER_PATH):
         if filename == ".DS_Store":
             continue
 
-        if filename != "": # TODO Change to file name you want to translate
+        if filename != "example.js": # TODO Change to file name you want to translate
             continue
 
         file_path = os.path.join(FOLDER_PATH, filename)

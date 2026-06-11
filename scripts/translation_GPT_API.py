@@ -8,15 +8,50 @@ from openai import OpenAI
 from html_parser import HtmlTextRewriter, HtmlTextExtractor
 from translation_queue import Queue
 
+
+# -------------------------------------------------------------------
+# USER SETTINGS
+# -------------------------------------------------------------------
+
+# The OpenAI API key is read from an environment variable.
+# Do not paste your API key directly into this script.
+#
+# Before running the script, create an environment variable called
+# OPENAI_AUTH_KEY that contains your OpenAI API key.
+#
+# On Mac/Linux, you can do this in the terminal with:
+# export OPENAI_AUTH_KEY="your_api_key_here"
+#
+# On Windows PowerShell, use:
+# $env:OPENAI_AUTH_KEY="your_api_key_here"
 AUTH_KEY = os.environ["OPENAI_AUTH_KEY"] # TODO add your OpenAI API KEY into a variable called "OPENAI_AUTH_KEY"
-                                         # so that it is never displayed
+
+# Folder containing the lab.js .json files that should be translated.
+# Example Mac path:
+# FOLDER_PATH = "/Users/yourname/Desktop/labjs_files"
+#
+# Example Windows path:
+# FOLDER_PATH = r"C:\Users\yourname\Desktop\labjs_files"
 FOLDER_PATH = ""  # TODO change this to your path where .json files are located
 
 client = OpenAI(api_key=AUTH_KEY)  
 
+# Target language for the translation.
+# Examples:
+# "EN" = English
+# "FR" = French
+# "DE" = German
 TARGET_LANGUAGE = "EN" # TODO set the target language to be translated to
+
+# Delimiter used internally to separate text snippets before translation.
+# You usually do not need to change this.
+# Only change it if the symbol "ω" appears in your experiment text.
 DELIMITER = "ω" # TODO if you use ω within your experiment, change to different delimiter
 
+
+# These are the lab.js fields that may contain visible participant-facing text.
+# The script will only translate text inside these fields.
+# CSS, HTML tags, and JavaScript code should not be changed.
 SECTIONS = [
     "title",
     "text",
@@ -36,6 +71,9 @@ SECTIONS = [
     "label"
 ]
 
+# -------------------------------------------------------------------
+# FUNCTIONS
+# -------------------------------------------------------------------
 
 def traverse_json(data, html_fn: Callable[[str], str]):
     for comp_id, comp in data.get("components", {}).items():
@@ -100,13 +138,16 @@ Try to keep the words used consistent and write in an academic fashion. Do not c
             default=lambda o: getattr(o, "text", str(o))
         )
 
+# -------------------------------------------------------------------
+# RUN SCRIPT
+# -------------------------------------------------------------------
 
 if __name__ == "__main__":
     for filename in os.listdir(FOLDER_PATH):
         if filename == ".DS_Store":
             continue
 
-        if filename != "": # TODO Change to file name you want to translate
+        if filename != "example.json": # TODO Change to file name you want to translate
             continue
 
         file_path = os.path.join(FOLDER_PATH, filename)
