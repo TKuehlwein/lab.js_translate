@@ -8,13 +8,14 @@ from openai import OpenAI
 from html_parser import HtmlTextRewriter, HtmlTextExtractor
 from translation_queue import Queue
 
-AUTH_KEY = os.environ["OPENAI_AUTH_KEY"]
-FOLDER_PATH = ""  # TODO change this to your path
+AUTH_KEY = os.environ["OPENAI_AUTH_KEY"] # TODO add your OpenAI API KEY into a variable called "OPENAI_AUTH_KEY"
+                                         # so that it is never displayed
+FOLDER_PATH = ""  # TODO change this to your path where .json files are located
 
 client = OpenAI(api_key=AUTH_KEY)  
 
-TARGET_LANGUAGE = "EN"
-DELIMITER = "ω"
+TARGET_LANGUAGE = "EN" # TODO set the target language to be translated to
+DELIMITER = "ω" # TODO if you use ω within your experiment, change to different delimiter
 
 SECTIONS = [
     "title",
@@ -105,7 +106,7 @@ if __name__ == "__main__":
         if filename == ".DS_Store":
             continue
 
-        if filename != "": # TODO Change to file you want to translate
+        if filename != "": # TODO Change to file name you want to translate
             continue
 
         file_path = os.path.join(FOLDER_PATH, filename)

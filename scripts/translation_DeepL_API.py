@@ -7,13 +7,14 @@ import deepl
 from html_parser import HtmlTextRewriter, HtmlTextExtractor
 from translation_queue import Queue
 
-AUTH_KEY = ""
-FOLDER_PATH = "" # TODO change this to your path
+AUTH_KEY = "DeepL_AUTH_KEY" # TODO add your DeppL API KEY into a variable called "DeepL_AUTH_KEY"
+                            # so that it is never displayed
+FOLDER_PATH = "" # TODO change this to your path where .json files are located
 
 deepl_client = deepl.DeepLClient(AUTH_KEY)
 
-TARGET_LANGUAGE = "FR"
-DELIMITER = "ω"
+TARGET_LANGUAGE = "EN" # TODO set the target language to be translated to
+DELIMITER = "ω" # TODO if you use ω within your experiment, change to different delimiter
 
 SECTIONS = [
     "title",
@@ -97,7 +98,7 @@ if __name__ == "__main__":
         if filename == ".DS_Store":
             continue
 
-        if filename != "load_1_full.json":
+        if filename != "": # TODO Change to file name you want to translate
             continue
 
         file_path = os.path.join(FOLDER_PATH, filename)
