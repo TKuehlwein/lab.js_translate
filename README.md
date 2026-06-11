@@ -5,6 +5,8 @@ These three scripts use a LLM API to translate .json scripts written in lab.js t
 
 <b> Note that we personally have gotten better results using the OpenAI API compared to the DeepL API. DeepL script left in for completness </b>
 
+As the translation is done via a LLM, the results might not always be perfect. Please make sure someone with fluency in the target language checks for possible errors
+
 Please read "instruction.md" for explanation on how to use the scripts. 
 
 Please note that fully canvas based experiments might not work properly as canvas screens are not translated into JavaScript. 
