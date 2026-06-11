@@ -25,11 +25,6 @@ AUTH_KEY = os.environ["DEEPL_AUTH_KEY"]
 
 
 # Folder containing the lab.js .json files that should be translated.
-# Example Mac path:
-# FOLDER_PATH = "/Users/yourname/Desktop/labjs_files"
-#
-# Example Windows path:
-# FOLDER_PATH = r"C:\Users\yourname\Desktop\labjs_files"
 FOLDER_PATH = "" # TODO change this to your path where .json files are located
 
 deepl_client = deepl.DeepLClient(AUTH_KEY)

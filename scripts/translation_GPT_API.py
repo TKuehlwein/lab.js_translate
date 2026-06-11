@@ -27,11 +27,6 @@ from translation_queue import Queue
 AUTH_KEY = os.environ["OPENAI_AUTH_KEY"] # TODO add your OpenAI API KEY into a variable called "OPENAI_AUTH_KEY"
 
 # Folder containing the lab.js .json files that should be translated.
-# Example Mac path:
-# FOLDER_PATH = "/Users/yourname/Desktop/labjs_files"
-#
-# Example Windows path:
-# FOLDER_PATH = r"C:\Users\yourname\Desktop\labjs_files"
 FOLDER_PATH = ""  # TODO change this to your path where .json files are located
 
 client = OpenAI(api_key=AUTH_KEY)  
