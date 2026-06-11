@@ -25,3 +25,7 @@ Please note that fully canvas based experiments might not work properly as canva
 Cite as: 
 
 Kühlwein, T, etc. 
+
+
+Correspondence concerning this github should be addressed to Tobias Kühlwein, 
+UniDistance Suisse, Schinerstrasse 18, 3900 Brig, Switzerland. E-Mail: kuehlweintobias@gmail.com 
